@@ -23,7 +23,7 @@ function DetailFour ( props ) {
     const [ quantity, setQauntity ] = useState( 1 );
     let product = data && data.product;
 
-    // decide if the product is wishlisted
+    // decide if the products is wishlisted
     let isWishlisted, colors = [], sizes = [];
     isWishlisted = wishlist.findIndex( item => item.slug === product.data.slug ) > -1 ? true : false;
 
@@ -296,7 +296,7 @@ function DetailFour ( props ) {
                             }
                         </a>
 
-                        {/* <ALink href="#" className="btn-product btn-compare"><i className="d-icon-compare"></i>Add to compare</ALink> */ }
+                        {/* <ALink href="#" className="btn-products btn-compare"><i className="d-icon-compare"></i>Add to compare</ALink> */ }
                     </div>
                 </div>
             </div>

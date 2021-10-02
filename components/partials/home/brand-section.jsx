@@ -15,22 +15,22 @@ function BrandSection () {
 
                     <OwlCarousel adClass="owl-theme owl-shadow-carousel pb-6" options={ brandSlider }>
                         <figure>
-                            <img src="./images/home/clients/1.jpg" alt="Brand" width="180" height="142" />
+                            <img src="/images/home/clients/1.jpg" alt="Brand" width="180" height="142" />
                         </figure>
                         <figure>
-                            <img src="./images/home/clients/2.jpg" alt="Brand" width="180" height="142" />
+                            <img src="/images/home/clients/2.jpg" alt="Brand" width="180" height="142" />
                         </figure>
                         <figure>
-                            <img src="./images/home/clients/3.jpg" alt="Brand" width="180" height="142" />
+                            <img src="/images/home/clients/3.jpg" alt="Brand" width="180" height="142" />
                         </figure>
                         <figure>
-                            <img src="./images/home/clients/4.jpg" alt="Brand" width="180" height="142" />
+                            <img src="/images/home/clients/4.jpg" alt="Brand" width="180" height="142" />
                         </figure>
                         <figure>
-                            <img src="./images/home/clients/5.jpg" alt="Brand" width="180" height="142" />
+                            <img src="/images/home/clients/5.jpg" alt="Brand" width="180" height="142" />
                         </figure>
                         <figure>
-                            <img src="./images/home/clients/6.jpg" alt="Brand" width="180" height="142" />
+                            <img src="/images/home/clients/6.jpg" alt="Brand" width="180" height="142" />
                         </figure>
                     </OwlCarousel>
                 </div>

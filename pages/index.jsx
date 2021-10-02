@@ -1,58 +1,56 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import { useQuery } from "@apollo/react-hooks";
-
-// Import Apollo Server and Query
-import withApollo from '../server/apollo';
-import { GET_HOME_DATA } from '../server/queries';
-
 // import Home Components
-import NewsletterModal from '~/components/features/modals/newsletter-modal';
 import IntroSection from '~/components/partials/home/intro-section';
 import CategorySection from '~/components/partials/home/category-section';
-import NewCollection from '~/components/partials/home/new-collection';
-import FeaturedCollection from '~/components/partials/home/featured-collection';
-import CtaSection from '~/components/partials/home/cta-section';
-import BlogSection from '~/components/partials/home/blog-section';
-import InstagramSection from '~/components/partials/home/instagram-section';
 import BrandSection from '~/components/partials/home/brand-section';
+import CourseCollections from "~/components/partials/home/CourseCollections";
+import {API_URL} from "~/utils/urls";
 
-function HomePage() {
-    const { data, loading, error } = useQuery( GET_HOME_DATA, { variables: { productsCount: 10 } } );
-    const latest = data && data.specialProducts.latest;
-    const featured = data && data.specialProducts.featured;
-    const posts = data && data.posts.data;
-
+export default function HomePage({products}) {
+    console.log(products);
     return (
         <div className="main homepage">
             <Helmet>
-                <title>Riode React eCommerce Template - Home</title>
+                <title>e-commerce shop - Home</title>
             </Helmet>
 
-            <h1 className="d-none">Riode React eCommerce Template - Home</h1>
+            <h1 className="d-none">e-commerce shop - Home</h1>
 
             <div className="page-content">
                 <IntroSection />
 
-                <NewCollection products={ latest } loading={ loading } />
+                <CourseCollections products={products} loading={false}/>
+
+                {/*<NewCollection products={ products } loading={ loading } />*/}
 
                 <CategorySection />
 
-                <FeaturedCollection products={ featured } loading={ loading } />
+                {/*<FeaturedCollection products={ featured } loading={ loading } />*/}
 
-                <CtaSection />
+                {/*<CtaSection />*/}
 
-                <BlogSection posts={ posts } />
+                {/*<BlogSection posts={ posts } />*/}
 
-                <InstagramSection />
+                {/*<InstagramSection />*/}
 
                 <BrandSection />
             </div>
 
-            <NewsletterModal />
+            {/*<NewsletterModal />*/}
         </div>
     )
 }
 
-export default withApollo( { ssr: typeof window === 'undefined' } )( HomePage );
+export async function getStaticProps(){
+    const product_res = await fetch(`${API_URL}/products/`);
+    const products = await product_res.json();
+
+    return {
+        props:{
+            products
+        }
+    }
+}
+

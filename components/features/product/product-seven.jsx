@@ -13,7 +13,7 @@ import Quantity from '~/components/features/quantity';
 function ProductSeven ( props ) {
     const { product, adClass = 'text-center', toggleWishlist, wishlist, addToCart, openQuickview } = props;
 
-    // decide if the product is wishlisted
+    // decide if the products is wishlisted
     let isWishlisted;
     isWishlisted = wishlist.findIndex( item => item.slug === product.slug ) > -1 ? true : false;
 
@@ -38,13 +38,13 @@ function ProductSeven ( props ) {
     const addToCartHandler = ( e ) => {
         e.preventDefault();
         if ( product.stock > 0 ) {
-            let qty = e.currentTarget.closest( '.product-with-qty' ).querySelector( '.product-quantity .quantity' ).value;
+            let qty = e.currentTarget.closest( '.products-with-qty' ).querySelector( '.products-quantity .quantity' ).value;
             addToCart( { ...product, qty: qty, price: product.price[ 0 ] } );
         }
     }
 
     return (
-        <div className={ `product ${ product.variants.length > 0 ? 'product-variable' : '' } text-center shadow-media product-with-qty ${ adClass }` }>
+        <div className={ `product ${ product.variants.length > 0 ? 'products-variable' : '' } text-center shadow-media product-with-qty ${ adClass }` }>
             <figure className="product-media">
                 <ALink href={ `/product/default/${ product.slug }` }>
                     <LazyLoadImage

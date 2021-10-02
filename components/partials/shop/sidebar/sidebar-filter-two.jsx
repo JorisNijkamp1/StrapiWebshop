@@ -62,7 +62,7 @@ function SidebarFilterTwo() {
 
         let mainContent = e.currentTarget.closest( '.main-content-wrap' );
         if ( mainContent && type !== "off-canvas" )
-            mainContent.querySelector( '.product-wrapper' ).classList.toggle( 'cols-md-4' );
+            mainContent.querySelector( '.products-wrapper' ).classList.toggle( 'cols-md-4' );
 
         if ( stickyWraper ) {
             stickyWraper.classList.toggle( 'closed' );

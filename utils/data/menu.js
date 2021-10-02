@@ -332,11 +332,11 @@ export const elementsList = [
     {
         "url": "categories",
         "class": "element-category",
-        "title": "product categories"
+        "title": "products categories"
     },
     {
         "url": "products",
-        "class": "element-product",
+        "class": "element-products",
         "title": "products"
     },
     {

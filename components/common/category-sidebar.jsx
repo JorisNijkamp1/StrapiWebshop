@@ -63,7 +63,7 @@ function CategorySidebar() {
 
             <div className="sidebar-content d-flex flex-column">
                 <ALink href="/" className="logo">
-                    <img src="./images/home/logo.jpg" alt="logo" width="153" height="44" />
+                    <img src="/images/home/logo.jpg" alt="logo" width="153" height="44" />
                 </ALink>
 
                 <ul className="menu toggle-menu category-menu">

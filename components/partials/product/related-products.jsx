@@ -15,7 +15,7 @@ export default function RelatedProducts ( props ) {
                 <OwlCarousel adClass="owl-theme owl-nav-full" options={ relatedProductSlider }>
                     {
                         products && products.slice( 0, 5 ).map( ( item, index ) =>
-                            <div className="product-wrap" key={ 'product-two-' + index }>
+                            <div className="product-wrap" key={ 'products-two-' + index }>
                                 <ProductTwo product={ item } />
                             </div>
                         )

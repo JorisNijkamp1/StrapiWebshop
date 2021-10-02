@@ -51,9 +51,9 @@ export default function MediaFive ( props ) {
     let events = {
         onTranslate: function ( e ) {
             if ( !e.target ) return;
-            if ( document.querySelector( '.product-thumbs' ) ) {
-                document.querySelector( '.product-thumbs' ).querySelector( '.product-thumb.active' ).classList.remove( 'active' );
-                document.querySelector( '.product-thumbs' ).querySelectorAll( '.product-thumb' )[ e.item.index ].classList.add( 'active' );
+            if ( document.querySelector( '.products-thumbs' ) ) {
+                document.querySelector( '.products-thumbs' ).querySelector( '.products-thumb.active' ).classList.remove( 'active' );
+                document.querySelector( '.products-thumbs' ).querySelectorAll( '.products-thumb' )[ e.item.index ].classList.add( 'active' );
             }
         }
     }

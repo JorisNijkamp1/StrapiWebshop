@@ -45,9 +45,9 @@ function CartMenu ( props ) {
                             <div className="products scrollable">
                                 {
                                     cartList.map( ( item, index ) =>
-                                        <div className="product product-cart" key={ 'cart-menu-product-' + index }>
+                                        <div className="product product-cart" key={ 'cart-menu-products-' + index }>
                                             <figure className="product-media pure-media">
-                                                <ALink href={ '/product/default/' + item.slug } onClick={ hideCartMenu }>
+                                                <ALink href={ '/products/default/' + item.slug } onClick={ hideCartMenu }>
                                                     <img src={ process.env.NEXT_PUBLIC_ASSET_URI + item.pictures[ 0 ].url } alt="product" width="80"
                                                         height="88" />
                                                 </ALink>
@@ -56,7 +56,7 @@ function CartMenu ( props ) {
                                                 </button>
                                             </figure>
                                             <div className="product-detail">
-                                                <ALink href={ '/product/default/' + item.slug } className="product-name" onClick={ hideCartMenu }>{ item.name }</ALink>
+                                                <ALink href={ '/products/default/' + item.slug } className="product-name" onClick={ hideCartMenu }>{ item.name }</ALink>
                                                 <div className="price-box">
                                                     <span className="product-quantity">{ item.qty }</span>
                                                     <span className="product-price">${ toDecimal( item.price ) }</span>

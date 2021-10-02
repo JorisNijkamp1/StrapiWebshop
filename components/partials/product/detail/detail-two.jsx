@@ -25,7 +25,7 @@ function DetailOne ( props ) {
     const [ curIndex, setCurIndex ] = useState( 0 );
     let product = data && data.product;
 
-    // decide if the product is wishlisted
+    // decide if the products is wishlisted
     let isWishlisted, colors = [], sizes = [];
     isWishlisted = wishlist.findIndex( item => item.slug === product.data.slug ) > -1 ? true : false;
 
@@ -46,11 +46,11 @@ function DetailOne ( props ) {
     }
 
     useEffect( () => {
-        if ( document.querySelector( '.product-form .btn-cart' ) ) {
+        if ( document.querySelector( '.products-form .btn-cart' ) ) {
             if ( product.data.variants.length > 0 ) {
-                document.querySelector( '.product-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
+                document.querySelector( '.products-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
             } else {
-                document.querySelector( '.product-form .btn-cart' ).removeAttribute( 'disabled' );
+                document.querySelector( '.products-form .btn-cart' ).removeAttribute( 'disabled' );
             }
         }
 
@@ -61,8 +61,8 @@ function DetailOne ( props ) {
                 document.querySelector( '.reset-value-button' ).style.display = "none";
             }
 
-            if ( document.querySelector( '.single-product-price' ) ) {
-                document.querySelector( '.single-product-price' ).style.display = "none";
+            if ( document.querySelector( '.single-products-price' ) ) {
+                document.querySelector( '.single-products-price' ).style.display = "none";
             }
         }
     }, [ product ] )
@@ -70,17 +70,17 @@ function DetailOne ( props ) {
     useEffect( () => {
         if ( product.data.variants.length > 0 ) {
             if ( ( curSize !== 'null' && curColor !== 'null' ) || ( curSize === 'null' && product.data.variants[ 0 ].size === null && curColor !== 'null' ) || ( curColor === 'null' && product.data.variants[ 0 ].color === null && curSize !== 'null' ) ) {
-                document.querySelector( '.product-form .btn-cart' ).removeAttribute( 'disabled' );
+                document.querySelector( '.products-form .btn-cart' ).removeAttribute( 'disabled' );
 
-                if ( document.querySelector( '.single-product-price' ) && document.querySelector( '.single-product-price' ).classList.contains( 'COLLAPSED' ) ) {
+                if ( document.querySelector( '.single-products-price' ) && document.querySelector( '.single-products-price' ).classList.contains( 'COLLAPSED' ) ) {
                     document.querySelector( '.show-price' ).click();
                 }
 
                 setCurIndex( product.data.variants.findIndex( item => ( item.size !== null && item.color !== null && item.color.name === curColor && item.size.name === curSize ) || ( item.size === null && item.color.name === curColor ) || ( item.color === null && item.size.name === curSize ) ) );
             } else {
-                document.querySelector( '.product-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
+                document.querySelector( '.products-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
 
-                if ( document.querySelector( '.single-product-price' ) && document.querySelector( '.single-product-price' ).classList.contains( 'EXPANDED' ) ) {
+                if ( document.querySelector( '.single-products-price' ) && document.querySelector( '.single-products-price' ).classList.contains( 'EXPANDED' ) ) {
                     document.querySelector( '.show-price' ).click();
                 }
             }
@@ -93,11 +93,11 @@ function DetailOne ( props ) {
                 document.querySelector( '.show-reset-button' ).click();
             }
         } else {
-            document.querySelector( '.product-form .btn-cart' ).removeAttribute( 'disabled' );
+            document.querySelector( '.products-form .btn-cart' ).removeAttribute( 'disabled' );
         }
 
         if ( product.stock === 0 ) {
-            document.querySelector( '.product-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
+            document.querySelector( '.products-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
         }
     }, [ curColor, curSize ] )
 
@@ -139,7 +139,7 @@ function DetailOne ( props ) {
 
     const addToCartHandler = () => {
         if ( product.data.stock > 0 ) {
-            let qty = document.querySelector( '.product-form-group .quantity' ).value;
+            let qty = document.querySelector( '.products-form-group .quantity' ).value;
 
             if ( product.data.variants.length > 0 ) {
                 let tmpName = product.data.name, tmpPrice;

@@ -26,7 +26,7 @@ function DetailOne ( props ) {
     const [ quantity, setQauntity ] = useState( 1 );
     let product = data && data.product;
 
-    // decide if the product is wishlisted
+    // decide if the products is wishlisted
     let isWishlisted, colors = [], sizes = [];
     isWishlisted = wishlist.findIndex( item => item.slug === product.data.slug ) > -1 ? true : false;
 
@@ -140,7 +140,7 @@ function DetailOne ( props ) {
     }
 
     return (
-        <div className={ "product-details " + adClass }>
+        <div className={ "products-details " + adClass }>
             {
                 isNav ?
                     <div className="product-navigation">
@@ -283,13 +283,13 @@ function DetailOne ( props ) {
                         <div className="container">
                             <div className="sticky-product-details">
                                 <figure className="product-image">
-                                    <ALink href={ '/product/default/' + product.data.slug }>
+                                    <ALink href={ '/products/default/' + product.data.slug }>
                                         <img src={ process.env.NEXT_PUBLIC_ASSET_URI + product.data.pictures[ 0 ].url } width="90" height="90"
                                             alt="Product" />
                                     </ALink>
                                 </figure>
                                 <div>
-                                    <h4 className="product-title"><ALink href={ '/product/default/' + product.data.slug }>{ product.data.name }</ALink></h4>
+                                    <h4 className="product-title"><ALink href={ '/products/default/' + product.data.slug }>{ product.data.name }</ALink></h4>
                                     <div className="product-info">
                                         <div className="product-price mb-0">
                                             {

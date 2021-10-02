@@ -107,7 +107,7 @@ function ProductsSidebar ( props ) {
                                         <div className="products-col">
                                             {
                                                 featured.slice( 0, 3 ).map( ( product, index ) => (
-                                                    <SmallProduct product={ product } key={ "small-product-" + index } />
+                                                    <SmallProduct product={ product } key={ "small-products-" + index } />
                                                 ) )
                                             }
                                         </div>
@@ -115,7 +115,7 @@ function ProductsSidebar ( props ) {
                                         <div className="products-col">
                                             {
                                                 featured.slice( 0, 3 ).map( ( product, index ) => (
-                                                    <SmallProduct product={ product } key={ "small-product-" + index } />
+                                                    <SmallProduct product={ product } key={ "small-products-" + index } />
                                                 ) )
                                             }
                                         </div>

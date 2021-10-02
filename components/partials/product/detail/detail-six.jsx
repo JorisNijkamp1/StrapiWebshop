@@ -24,7 +24,7 @@ function DetailOne ( props ) {
     const [ curIndex, setCurIndex ] = useState( 0 );
     let product = data && data.product;
 
-    // decide if the product is wishlisted
+    // decide if the products is wishlisted
     let isWishlisted, colors = [], sizes = [];
     isWishlisted = wishlist.findIndex( item => item.slug === product.data.slug ) > -1 ? true : false;
 
@@ -45,11 +45,11 @@ function DetailOne ( props ) {
     }
 
     useEffect( () => {
-        if ( document.querySelector( '.quickview-modal .product-form .btn-cart' ) ) {
+        if ( document.querySelector( '.quickview-modal .products-form .btn-cart' ) ) {
             if ( product.data.variants.length > 0 ) {
-                document.querySelector( '.quickview-modal .product-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
+                document.querySelector( '.quickview-modal .products-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
             } else {
-                document.querySelector( '.quickview-modal .product-form .btn-cart' ).removeAttribute( 'disabled' );
+                document.querySelector( '.quickview-modal .products-form .btn-cart' ).removeAttribute( 'disabled' );
             }
         }
 
@@ -60,8 +60,8 @@ function DetailOne ( props ) {
                 document.querySelector( '.quickview-modal .reset-value-button' ).style.display = "none";
             }
 
-            if ( document.querySelector( '.quickview-modal .single-product-price' ) ) {
-                document.querySelector( '.quickview-modal .single-product-price' ).style.display = "none";
+            if ( document.querySelector( '.quickview-modal .single-products-price' ) ) {
+                document.querySelector( '.quickview-modal .single-products-price' ).style.display = "none";
             }
         }
     }, [ product ] )
@@ -69,17 +69,17 @@ function DetailOne ( props ) {
     useEffect( () => {
         if ( product.data.variants.length > 0 ) {
             if ( ( curSize !== 'null' && curColor !== 'null' ) || ( curSize === 'null' && product.data.variants[ 0 ].size === null && curColor !== 'null' ) || ( curColor === 'null' && product.data.variants[ 0 ].color === null && curSize !== 'null' ) ) {
-                document.querySelector( '.quickview-modal .product-form .btn-cart' ).removeAttribute( 'disabled' );
+                document.querySelector( '.quickview-modal .products-form .btn-cart' ).removeAttribute( 'disabled' );
 
-                if ( document.querySelector( '.quickview-modal .single-product-price' ) && document.querySelector( '.quickview-modal .single-product-price' ).classList.contains( 'COLLAPSED' ) ) {
+                if ( document.querySelector( '.quickview-modal .single-products-price' ) && document.querySelector( '.quickview-modal .single-products-price' ).classList.contains( 'COLLAPSED' ) ) {
                     document.querySelector( '.quickview-modal .show-price' ).click();
                 }
 
                 setCurIndex( product.data.variants.findIndex( item => ( item.size !== null && item.color !== null && item.color.name === curColor && item.size.name === curSize ) || ( item.size === null && item.color.name === curColor ) || ( item.color === null && item.size.name === curSize ) ) );
             } else {
-                document.querySelector( '.quickview-modal .product-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
+                document.querySelector( '.quickview-modal .products-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
 
-                if ( document.querySelector( '.quickview-modal .single-product-price' ) && document.querySelector( '.quickview-modal .single-product-price' ).classList.contains( 'EXPANDED' ) ) {
+                if ( document.querySelector( '.quickview-modal .single-products-price' ) && document.querySelector( '.quickview-modal .single-products-price' ).classList.contains( 'EXPANDED' ) ) {
                     document.querySelector( '.quickview-modal .show-price' ).click();
                 }
             }
@@ -92,11 +92,11 @@ function DetailOne ( props ) {
                 document.querySelector( '.quickview-modal .show-reset-button' ).click();
             }
         } else {
-            document.querySelector( '.quickview-modal .product-form .btn-cart' ).removeAttribute( 'disabled' );
+            document.querySelector( '.quickview-modal .products-form .btn-cart' ).removeAttribute( 'disabled' );
         }
 
         if ( product.stock === 0 ) {
-            document.querySelector( '.quickview-modal .product-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
+            document.querySelector( '.quickview-modal .products-form .btn-cart' ).setAttribute( 'disabled', 'disabled' );
         }
     }, [ curColor, curSize ] )
 
@@ -127,7 +127,7 @@ function DetailOne ( props ) {
 
     const addToCartHandler = () => {
         if ( product.data.stock > 0 ) {
-            let qty = document.querySelector( '.quickview-modal .product-form-group .quantity' ).value;
+            let qty = document.querySelector( '.quickview-modal .products-form-group .quantity' ).value;
 
             if ( product.data.variants.length > 0 ) {
                 let tmpName = product.data.name, tmpPrice;
@@ -177,7 +177,7 @@ function DetailOne ( props ) {
     }
 
     return (
-        <div className={ "product-details " + adClass }>
+        <div className={ "products-details " + adClass }>
             {
                 isNav ?
                     <div className="product-navigation">
@@ -325,13 +325,13 @@ function DetailOne ( props ) {
                         <div className="container">
                             <div className="sticky-product-details">
                                 <figure className="product-image">
-                                    <ALink href={ '/product/default/' + product.data.slug }>
+                                    <ALink href={ '/products/default/' + product.data.slug }>
                                         <img src={ process.env.NEXT_PUBLIC_ASSET_URI + product.data.pictures[ 0 ].url } width="90" height="90"
                                             alt="Product" />
                                     </ALink>
                                 </figure>
                                 <div>
-                                    <h4 className="product-title"><ALink href={ '/product/default/' + product.data.slug }>{ product.data.name }</ALink></h4>
+                                    <h4 className="product-title"><ALink href={ '/products/default/' + product.data.slug }>{ product.data.name }</ALink></h4>
                                     <div className="product-info">
                                         <div className="product-price mb-0">
                                             {

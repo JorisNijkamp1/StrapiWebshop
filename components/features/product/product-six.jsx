@@ -13,7 +13,7 @@ import { toDecimal } from '~/utils';
 function ProductSix ( props ) {
     const { product, adClass = 'text-center', toggleWishlist, wishlist, addToCart, openQuickview } = props;
 
-    // decide if the product is wishlisted
+    // decide if the products is wishlisted
     let isWishlisted;
     isWishlisted = wishlist.findIndex( item => item.slug === product.slug ) > -1 ? true : false;
 
@@ -41,7 +41,7 @@ function ProductSix ( props ) {
     }
 
     return (
-        <div className={ `product ${ product.variants.length > 0 ? 'product-variable' : '' } text-center shadow-media cart-full ${ adClass }` }>
+        <div className={ `product ${ product.variants.length > 0 ? 'products-variable' : '' } text-center shadow-media cart-full ${ adClass }` }>
             <figure className="product-media">
                 <ALink href={ `/product/default/${ product.slug }` }>
                     <LazyLoadImage

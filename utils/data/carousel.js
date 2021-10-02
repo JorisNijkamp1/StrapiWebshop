@@ -43,7 +43,7 @@ export const mainSlider3 = {
     autoHeight: false,
     dots: false,
     nav: true
-    // dotsContainer: ".product-thumbs"
+    // dotsContainer: ".products-thumbs"
 }
 
 export const mainSlider4 = {
@@ -300,7 +300,7 @@ export const mainSlider17 = {
         }
     }
     // ,
-    // dotsContainer: ".product-thumbs"
+    // dotsContainer: ".products-thumbs"
 }
 
 export const mainSlider18 = {

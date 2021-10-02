@@ -22,7 +22,7 @@ function DetailRight ( props ) {
     const [ quantity, setQauntity ] = useState( 1 );
     let product = data && data.product;
 
-    // decide if the product is wishlisted
+    // decide if the products is wishlisted
     let isWishlisted, colors = [], sizes = [];
     isWishlisted = wishlist.findIndex( item => item.slug === product.data.slug ) > -1 ? true : false;
 

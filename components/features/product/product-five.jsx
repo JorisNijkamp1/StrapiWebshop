@@ -14,12 +14,12 @@ import { toDecimal } from '~/utils';
 function ProductFive ( props ) {
     const { product, adClass, toggleWishlist, wishlist, addToCart, openQuickview, isCat = true, isBadge = true } = props;
 
-    // decide if the product is wishlisted
+    // decide if the products is wishlisted
     let isWishlisted;
     isWishlisted = wishlist.findIndex( item => item.slug === product.slug ) > -1 ? true : false;
 
     useEffect( () => {
-        let items = document.querySelectorAll( '.product-slideup-content' );
+        let items = document.querySelectorAll( '.products-slideup-content' );
 
         for ( let i = 0; i < items.length; i++ ) {
             items[ i ].addEventListener( 'mouseenter', mouseOverHandler, false );
@@ -62,18 +62,18 @@ function ProductFive ( props ) {
     }
 
     const mouseOverHandler = ( e ) => {
-        let height = e.currentTarget.querySelector( '.product-hide-details' ).offsetHeight;
-        e.currentTarget.querySelector( '.product-details' ).setAttribute( 'style', `transform: translateY(-${ height }px)` );
-        e.currentTarget.querySelector( '.product-hide-details' ).setAttribute( 'style', `transform: translateY(-${ height }px)` );
+        let height = e.currentTarget.querySelector( '.products-hide-details' ).offsetHeight;
+        e.currentTarget.querySelector( '.products-details' ).setAttribute( 'style', `transform: translateY(-${ height }px)` );
+        e.currentTarget.querySelector( '.products-hide-details' ).setAttribute( 'style', `transform: translateY(-${ height }px)` );
     }
 
     const mouseLeaveHandler = ( e ) => {
-        e.currentTarget.querySelector( '.product-details' ).setAttribute( 'style', '' );
-        e.currentTarget.querySelector( '.product-hide-details' ).setAttribute( 'style', '' );
+        e.currentTarget.querySelector( '.products-details' ).setAttribute( 'style', '' );
+        e.currentTarget.querySelector( '.products-hide-details' ).setAttribute( 'style', '' );
     }
 
     return (
-        <div className={ `product product-slideup text-center ${ adClass } ${ product.variants.length > 0 ? 'product-variable' : '' }` }>
+        <div className={ `product product-slideup text-center ${ adClass } ${ product.variants.length > 0 ? 'products-variable' : '' }` }>
             <figure className="product-media">
                 <ALink href={ `/product/default/${ product.slug }` }>
                     <LazyLoadImage

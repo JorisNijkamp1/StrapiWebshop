@@ -9,12 +9,12 @@ export default function ThumbOne ( props ) {
         window.addEventListener( 'resize', initCarouselHanlder );
 
         setTimeout( () => {
-            let productThumb = document.querySelector( '.product-thumb' );
-            let wrapperHeight = document.querySelector( '.product-thumbs-one' ).offsetHeight;
+            let productThumb = document.querySelector( '.products-thumb' );
+            let wrapperHeight = document.querySelector( '.products-thumbs-one' ).offsetHeight;
             let thumbSpace = parseInt( window.getComputedStyle( productThumb ).getPropertyValue( "margin-bottom" ) );
             let transformUnit = productThumb.offsetHeight + thumbSpace;
-            // newTerm = Math.ceil( ( ( document.querySelector( '.product-gallery.pg-vertical' ).offsetHeight + thumbSpace ) ) / transformUnit );
-            let newTerm = ( ( document.querySelector( '.product-gallery.pg-vertical' ).offsetHeight + thumbSpace ) );
+            // newTerm = Math.ceil( ( ( document.querySelector( '.products-gallery.pg-vertical' ).offsetHeight + thumbSpace ) ) / transformUnit );
+            let newTerm = ( ( document.querySelector( '.products-gallery.pg-vertical' ).offsetHeight + thumbSpace ) );
             newTerm = parseInt( newTerm / transformUnit );
             if ( newTerm !== term ) {
                 setTerm( newTerm );
@@ -28,15 +28,15 @@ export default function ThumbOne ( props ) {
 
     // initial settings
     useEffect( () => {
-        let productThumbs = document.querySelector( '.product-thumbs-one' );
+        let productThumbs = document.querySelector( '.products-thumbs-one' );
 
         if ( window.innerWidth < 992 ) {
-            document.querySelector( '.product-thumbs-one' ).style.display = 'none';
-            document.querySelector( '.product-thumbs-two' ).style.display = 'block';
+            document.querySelector( '.products-thumbs-one' ).style.display = 'none';
+            document.querySelector( '.products-thumbs-two' ).style.display = 'block';
             window.jQuery( '.owl-carousel' ).trigger( 'refresh.owl.carousel' );
         } else {
-            document.querySelector( '.product-thumbs-one' ).style.display = 'block';
-            document.querySelector( '.product-thumbs-two' ).style.display = 'none';
+            document.querySelector( '.products-thumbs-one' ).style.display = 'block';
+            document.querySelector( '.products-thumbs-two' ).style.display = 'none';
         }
 
         setPos( 0 );
@@ -47,14 +47,14 @@ export default function ThumbOne ( props ) {
             productThumbs.querySelector( '.thumb-down' ).classList.add( 'disabled' );
         }
 
-        if ( document.querySelector( '.product-thumbs' ) ) {
+        if ( document.querySelector( '.products-thumbs' ) ) {
             activeItem( 0 );
             productThumbs.querySelector( '.thumb-up' ).classList.add( 'disabled' );
-            document.querySelector( '.product-thumbs' ).style.top = 0;
+            document.querySelector( '.products-thumbs' ).style.top = 0;
         }
     }, [ product ] )
 
-    // change the pos and top when the media carousel is translated 
+    // change the pos and top when the media carousel is translated
     useEffect( () => {
         if ( pos + term - 1 < index ) {
             moveThumb( "down" );
@@ -70,7 +70,7 @@ export default function ThumbOne ( props ) {
     }, [ index ] )
 
     useEffect( () => {
-        let productThumbs = document.querySelector( '.product-thumbs-one' );
+        let productThumbs = document.querySelector( '.products-thumbs-one' );
         if ( pos + term < product.pictures.length ) {
             productThumbs.querySelector( '.thumb-down' ).classList.remove( 'disabled' );
         } else {
@@ -89,7 +89,7 @@ export default function ThumbOne ( props ) {
     }, [ term ] )
 
     useEffect( () => {
-        let productThumbs = document.querySelector( '.product-thumbs-one' );
+        let productThumbs = document.querySelector( '.products-thumbs-one' );
         if ( productThumbs ) {
             if ( pos > 0 ) {
                 productThumbs.querySelector( '.thumb-up' ).classList.remove( 'disabled' );
@@ -108,36 +108,36 @@ export default function ThumbOne ( props ) {
     // move thumb pos
     function moveThumb ( type = "up" ) {
         let sign = type === "up" ? 1 : -1;
-        let productThumb = document.querySelector( '.product-thumb' );
-        let wrapperHeight = document.querySelector( '.product-thumbs-one' ).offsetHeight;
+        let productThumb = document.querySelector( '.products-thumb' );
+        let wrapperHeight = document.querySelector( '.products-thumbs-one' ).offsetHeight;
         let transformUnit = productThumb.offsetHeight + parseInt( window.getComputedStyle( productThumb ).getPropertyValue( "margin-bottom" ) );
         if ( type === 'down' ) {
-            document.querySelector( '.product-thumbs' ).style.top = -transformUnit * ( pos - sign ) + ( wrapperHeight - transformUnit * term ) + parseInt( window.getComputedStyle( productThumb ).getPropertyValue( "margin-bottom" ) ) + 'px';
+            document.querySelector( '.products-thumbs' ).style.top = -transformUnit * ( pos - sign ) + ( wrapperHeight - transformUnit * term ) + parseInt( window.getComputedStyle( productThumb ).getPropertyValue( "margin-bottom" ) ) + 'px';
         } else {
-            document.querySelector( '.product-thumbs' ).style.top = -transformUnit * ( pos - sign ) + 'px';
+            document.querySelector( '.products-thumbs' ).style.top = -transformUnit * ( pos - sign ) + 'px';
         }
     }
 
     // active selected item
     function activeItem ( index ) {
-        if ( document.querySelector( '.product-thumbs' ).querySelector( '.active.product-thumb' ) ) {
-            let activeItems = document.querySelector( '.product-thumbs' ).querySelectorAll( '.active.product-thumb' );
+        if ( document.querySelector( '.products-thumbs' ).querySelector( '.active.products-thumb' ) ) {
+            let activeItems = document.querySelector( '.products-thumbs' ).querySelectorAll( '.active.products-thumb' );
             activeItems.forEach( item => {
                 item.classList.remove( 'active' );
             } )
         }
-        document.querySelector( '.product-thumbs' ).querySelectorAll( '.product-thumb' )[ index ].classList.add( 'active' );
+        document.querySelector( '.products-thumbs' ).querySelectorAll( '.products-thumb' )[ index ].classList.add( 'active' );
     }
 
     // init and destroy thumb carousel in 992px
     const initCarouselHanlder = () => {
         if ( window.innerWidth < 992 ) {
-            document.querySelector( '.product-thumbs-one' ).style.display = 'none';
-            document.querySelector( '.product-thumbs-two' ).style.display = 'block';
+            document.querySelector( '.products-thumbs-one' ).style.display = 'none';
+            document.querySelector( '.products-thumbs-two' ).style.display = 'block';
             window.jQuery( '.owl-carousel' ).trigger( 'refresh.owl.carousel' );
         } else {
-            document.querySelector( '.product-thumbs-one' ).style.display = 'block';
-            document.querySelector( '.product-thumbs-two' ).style.display = 'none';
+            document.querySelector( '.products-thumbs-one' ).style.display = 'block';
+            document.querySelector( '.products-thumbs-two' ).style.display = 'none';
             setTermHandler();
         }
     }
@@ -145,30 +145,30 @@ export default function ThumbOne ( props ) {
     // change the items displayed once in sidebar
     const setTermHandler = () => {
         setTimeout( () => {
-            let productThumb = document.querySelector( '.product-thumb' );
-            let wrapperHeight = document.querySelector( '.product-thumbs-one' ).offsetHeight;
+            let productThumb = document.querySelector( '.products-thumb' );
+            let wrapperHeight = document.querySelector( '.products-thumbs-one' ).offsetHeight;
             let thumbSpace = parseInt( window.getComputedStyle( productThumb ).getPropertyValue( "margin-bottom" ) );
             let transformUnit = productThumb.offsetHeight + thumbSpace;
-            // newTerm = Math.ceil( ( ( document.querySelector( '.product-gallery.pg-vertical' ).offsetHeight + thumbSpace ) ) / transformUnit );
-            let newTerm = ( ( document.querySelector( '.product-gallery.pg-vertical' ).offsetHeight + thumbSpace ) );
+            // newTerm = Math.ceil( ( ( document.querySelector( '.products-gallery.pg-vertical' ).offsetHeight + thumbSpace ) ) / transformUnit );
+            let newTerm = ( ( document.querySelector( '.products-gallery.pg-vertical' ).offsetHeight + thumbSpace ) );
             newTerm = parseInt( newTerm / transformUnit );
             console.log( "new term is", newTerm, window.innerWidth );
             if ( newTerm !== term ) {
                 setTerm( newTerm );
             }
 
-            let thumbContainer = document.querySelector( '.product-thumbs-one' );
+            let thumbContainer = document.querySelector( '.products-thumbs-one' );
             if ( product.pictures.length <= newTerm ) {
                 setTimeout( () => {
-                    thumbContainer.querySelector( '.product-thumbs' ).style.top = 0;
+                    thumbContainer.querySelector( '.products-thumbs' ).style.top = 0;
                 }, 100 );
             } else {
-                let currentTop = parseInt( window.getComputedStyle( thumbContainer.querySelector( '.product-thumbs' ) ).getPropertyValue( 'top' ) );
+                let currentTop = parseInt( window.getComputedStyle( thumbContainer.querySelector( '.products-thumbs' ) ).getPropertyValue( 'top' ) );
                 let offset = currentTop + transformUnit * product.pictures.length - thumbSpace;
                 let temp = wrapperHeight - offset;
 
                 if ( ( index > newTerm - 1 || temp >= 0 ) && product.pictures.length > newTerm ) {
-                    thumbContainer.querySelector( '.product-thumbs' ).style.top = currentTop + temp + 'px';
+                    thumbContainer.querySelector( '.products-thumbs' ).style.top = currentTop + temp + 'px';
                 }
             }
         }, 300 );

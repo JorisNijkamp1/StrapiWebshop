@@ -13,18 +13,18 @@ function ThumbTwo( props ) {
         if ( thumbRef !== null && index >= 0 ) {
             thumbRef.current.$car.to( index, 300, true );
 
-            if ( document.querySelector( '.product-thumbs' ) ) {
-                document.querySelector( '.product-thumbs .owl-stage' ).querySelector( '.product-thumb.active' ) && document.querySelector( '.product-thumbs .owl-stage' ).querySelector( '.product-thumb.active' ).classList.remove( 'active' );
-                document.querySelector( '.product-thumbs .owl-stage' ).querySelectorAll( '.owl-item' )[ index ] && document.querySelector( '.product-thumbs .owl-stage' ).querySelectorAll( '.owl-item' )[ index ] && document.querySelector( '.product-thumbs .owl-stage' ).querySelectorAll( '.owl-item' )[ index ].querySelector( '.product-thumb' ).classList.add( 'active' );
+            if ( document.querySelector( '.products-thumbs' ) ) {
+                document.querySelector( '.products-thumbs .owl-stage' ).querySelector( '.products-thumb.active' ) && document.querySelector( '.products-thumbs .owl-stage' ).querySelector( '.products-thumb.active' ).classList.remove( 'active' );
+                document.querySelector( '.products-thumbs .owl-stage' ).querySelectorAll( '.owl-item' )[ index ] && document.querySelector( '.products-thumbs .owl-stage' ).querySelectorAll( '.owl-item' )[ index ] && document.querySelector( '.products-thumbs .owl-stage' ).querySelectorAll( '.owl-item' )[ index ].querySelector( '.products-thumb' ).classList.add( 'active' );
             }
         }
     }, [ index ] )
 
     const thumbActiveHandler = ( e, thumbIndex ) => {
         props.onChangeIndex( thumbIndex );
-        document.querySelector( '.product-thumbs' ) && document.querySelector( '.product-thumbs .owl-stage' ).querySelector( '.product-thumb.active' ).classList.remove( 'active' );
+        document.querySelector( '.products-thumbs' ) && document.querySelector( '.products-thumbs .owl-stage' ).querySelector( '.products-thumb.active' ).classList.remove( 'active' );
         e.currentTarget.classList.add( 'active' );
-        // window.jQuery( '.quickview-modal .product-single-carousel' ).trigger( 'to.owl.carousel', [ thumbIndex, 100, true ] );
+        // window.jQuery( '.quickview-modal .products-single-carousel' ).trigger( 'to.owl.carousel', [ thumbIndex, 100, true ] );
     }
 
     const changeRefHandler = ( carRef ) => {

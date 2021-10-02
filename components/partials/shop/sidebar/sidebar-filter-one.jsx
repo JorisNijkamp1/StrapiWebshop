@@ -80,7 +80,7 @@ function SidebarFilterOne( props ) {
 
         let mainContent = e.currentTarget.closest( '.main-content-wrap' );
         if ( mainContent && type !== "off-canvas" && query.grid !== '4cols' )
-            mainContent.querySelector( '.row.product-wrapper' ) && mainContent.querySelector( '.row.product-wrapper' ).classList.toggle( 'cols-md-4' );
+            mainContent.querySelector( '.row.products-wrapper' ) && mainContent.querySelector( '.row.products-wrapper' ).classList.toggle( 'cols-md-4' );
 
         if ( mainContent && stickyWraper ) {
             stickyWraper.classList.toggle( 'closed' );

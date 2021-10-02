@@ -54,7 +54,7 @@ function Quickview ( props ) {
             if ( !loading && data && isOpen && document.querySelector( '.quickview-modal' ) )
                 imagesLoaded( '.quickview-modal' ).on( 'done', function () {
                     setLoadingState( true );
-                    window.jQuery( '.quickview-modal .product-single-carousel' ).trigger( 'refresh.owl.carousel' );
+                    window.jQuery( '.quickview-modal .products-single-carousel' ).trigger( 'refresh.owl.carousel' );
                 } ).on( 'progress', function () {
                     setLoadingState( false );
                 } );

@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Reveal from "react-awesome-reveal";
 import Cookie from "js-cookie";
+import AuthContext from "~/context/AuthContext";
 import { useRouter } from 'next/router';
-
 import ALink from '~/components/features/custom-link';
-
 import CartMenu from '~/components/common/partials/cart-menu';
 import SearchBox from '~/components/common/partials/search-box';
 import LoginModal from '~/components/features/modals/login-modal';
@@ -14,6 +13,8 @@ import { fadeInRightShorter, fadeInLeftShorter } from '~/utils/data/keyframes';
 export default function Header () {
     const router = useRouter();
     const [ showTopNotice, setShowTopNotice ] = useState( !Cookie.get( "closeTopNotice" ) );
+
+    const {user} = useContext(AuthContext);
 
     useEffect( () => {
         window.addEventListener( 'resize', resizeHandler );
@@ -27,7 +28,6 @@ export default function Header () {
             window.removeEventListener( 'resize', resizeHandler );
         } )
     }, [] );
-
 
     const resizeHandler = () => {
         if ( document.querySelector( 'body' ).classList.contains( 'category-sidebar-active' ) ) {
@@ -48,7 +48,7 @@ export default function Header () {
     }
 
     return (
-        <header className={ `header ${ router.pathname.includes( '/product' ) ? 'border-bottom' : '' }` }>
+        <header className={ `header ${ router.pathname.includes( '/products' ) ? 'border-bottom' : '' }` }>
             {
                 showTopNotice &&
                 <div className="header-top has-center top-notice">
@@ -104,41 +104,27 @@ export default function Header () {
 
                         <span className="divider"></span>
 
-                        <div className="currency-dropdown dropdown mr-4">
-                            <ALink href="#currency">USD</ALink>
-                            <ul className="dropdown-box">
-                                <li><ALink href="#">USD</ALink></li>
-                                <li><ALink href="#">EUR</ALink></li>
-                            </ul>
-                        </div>
-
-                        <div className="language-dropdown dropdown">
-                            <ALink href="#language">ENG</ALink>
-                            <ul className="dropdown-box">
-                                <li>
-                                    <ALink href="#">
-                                        ENG
-                                    </ALink>
-                                </li>
-                                <li>
-                                    <ALink href="#">
-                                        FRH
-                                    </ALink>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
 
                     <div className="header-center">
                         <ALink href="/" className="logo d-lg-none d-block">
-                            <img src="./images/home/logo.jpg" alt="logo" width="153" height="44" />
+                            <img src="/images/home/logo.jpg" alt="logo" width="153" height="44" />
                         </ALink>
 
                         <SearchBox />
                     </div>
 
                     <div className="header-right">
-                        <LoginModal />
+                        {
+                            user ? (
+                                <ALink href="/account" className="icon-box icon-box-side">
+                                    <div className="icon-box-content">
+                                        <h4 className="icon-box-title">Logged in as:</h4>
+                                        <p>{user.email}</p>
+                                    </div>
+                                </ALink>
+                            ) : <LoginModal/>
+                        }
 
                         <ALink href="/pages/wishlist" className="wishlist">
                             <i className="d-icon-heart"></i>

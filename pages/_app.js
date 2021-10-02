@@ -1,64 +1,57 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 import withRedux from "next-redux-wrapper";
-import { Provider } from "react-redux";
-import { PersistGate } from 'redux-persist/integration/react';
+import {Provider} from "react-redux";
+import {PersistGate} from 'redux-persist/integration/react';
 import Helmet from "react-helmet";
 
 import Layout from '~/components/layout';
 
 import makeStore from "~/store";
-import { demoActions } from '~/store/demo';
+import {demoActions} from '~/store/demo';
 
-import { currentDemo } from '~/server/queries';
-
+import '../styles/globals.css'
 import "~/public/sass/style.scss";
+import {AuthProvider} from "~/context/AuthContext";
 
-const App = ( { Component, pageProps, store } ) => {
-    useEffect( () => {
-        document.getElementById( '__next' ).classList.add( 'riode-rounded-skin' );
-        if ( store.getState().demo.current !== currentDemo ) {
-            store.dispatch( demoActions.refreshStore( currentDemo ) );
+const App = ({Component, pageProps, store}) => {
+    useEffect(() => {
+        document.getElementById('__next').classList.add('riode-rounded-skin');
+        if (store.getState().demo.current !== "26") {
+            store.dispatch(demoActions.refreshStore("26"));
         }
-    }, [] )
+    }, [])
 
     return (
-        <Provider store={ store }>
-            <PersistGate
-                persistor={ store.__persistor }
-                loading={ <div className="loading-overlay">
-                    <div className="bounce-loader">
-                        <div className="bounce1"></div>
-                        <div className="bounce2"></div>
-                        <div className="bounce3"></div>
-                        <div className="bounce4"></div>
-                    </div>
-                </div> }>
-                <Helmet>
-                    <meta charSet="UTF-8" />
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <Provider store={store}>
+            <AuthProvider>
+                <PersistGate
+                    persistor={store.__persistor}
+                    loading={<div className="loading-overlay">
+                        <div className="bounce-loader">
+                            <div className="bounce1"></div>
+                            <div className="bounce2"></div>
+                            <div className="bounce3"></div>
+                            <div className="bounce4"></div>
+                        </div>
+                    </div>}>
+                    <Helmet>
+                        <meta charSet="UTF-8"/>
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-                    <title>Riode - React eCommerce Template</title>
+                        <title>E-commerce webshop</title>
+                        <meta name="keywords" content="E-commerce webshop"/>
+                        <meta name="description" content="E-commerce webshop"/>
+                        <meta name="author" content="WebShop"/>
+                    </Helmet>
 
-                    <meta name="keywords" content="React Template" />
-                    <meta name="description" content="Riode - React eCommerce Template" />
-                    <meta name="author" content="D-THEMES" />
-                </Helmet>
-
-                <Layout>
-                    <Component { ...pageProps } />
-                </Layout>
-            </PersistGate>
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                </PersistGate>
+            </AuthProvider>
         </Provider>
     );
 }
 
-App.getInitialProps = async ( { Component, ctx } ) => {
-    let pageProps = {};
-    if ( Component.getInitialProps ) {
-        pageProps = await Component.getInitialProps( ctx );
-    }
-    return { pageProps };
-};
-
-export default withRedux( makeStore )( App );
+export default withRedux(makeStore)(App);
