@@ -13,6 +13,7 @@ import DescThree from '~/components/partials/product/desc/desc-three';
 import { wishlistActions } from '~/store/wishlist';
 import { cartActions } from '~/store/cart';
 
+
 import { toDecimal } from '~/utils';
 
 function DetailOne ( props ) {
