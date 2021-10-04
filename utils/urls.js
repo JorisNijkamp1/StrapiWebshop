@@ -1,5 +1,5 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://shop-cms.jorisnijkamp.nl'
-export const MAGIC_PUBLIC_KEY = process.env.NEXT_PUBLIC_MAGIC_KEY || 'pk_live_5674B79447EDA8CE';
+export const API_URL = process.env.NEXT_PUBLIC_API_URL;
+export const MAGIC_PUBLIC_KEY = process.env.NEXT_PUBLIC_MAGIC_KEY;
 
 export const fromImageToUrl = image => {
     if (!image) {
