@@ -46,7 +46,8 @@ export async function getStaticProps({params: {slug}}) {
     return {
         props: {
             product: found[0] // Response is an array.
-        }
+        },
+        revalidate: 2
     }
 }
 
