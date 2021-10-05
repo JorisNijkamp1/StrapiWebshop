@@ -8,13 +8,11 @@ import {API_URL} from "~/utils/urls";
 
 const useOrders = (user, getToken) => {
     const [orders, setOrders] = useState([]);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchOrders = async () => {
             if (user) {
                 try {
-                    setLoading(true);
                     const token = await getToken();
                     const order_res = await fetch(`${API_URL}/orders`, {
                         headers: {
@@ -26,19 +24,18 @@ const useOrders = (user, getToken) => {
                 } catch (e) {
                     setOrders([]);
                 }
-                setLoading(false);
             }
         };
 
         fetchOrders().catch(() => setOrders([]));
     }, [user]);
 
-    return {orders, loading };
+    return orders;
 }
 
 export default function Account() {
     const {user, logoutUser, getToken} = useContext(AuthContext);
-    const {orders, loading } = useOrders(user, getToken);
+    const orders = useOrders(user, getToken);
 
     return (
         <main className="main account">
@@ -57,7 +54,6 @@ export default function Account() {
             </nav>
             <div className="page-content mt-4 mb-10 pb-6">
                 <div className="container">
-
                     {user ? (
                         <>
                             <h2 className="title title-center mb-10">My Account</h2>
