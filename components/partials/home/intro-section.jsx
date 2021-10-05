@@ -37,7 +37,7 @@ function IntroSection() {
                 <div className="intro-slide2 banner banner-fixed" style={ { backgroundColor: "#77818a" } }>
                     <figure>
                         <LazyLoadImage
-                            src="./images/home/slides/2.jpg"
+                            src="./images/home/slides/img-2.jpg"
                             alt="Intro Slider"
                             effect="opacity"
                             width="auto"
