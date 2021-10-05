@@ -42,6 +42,14 @@ export const AuthProvider = props => {
         }
     }
 
+    const getToken = async () => {
+        try {
+            return await magic.user.getIdToken();
+        }catch (e) {
+
+        }
+    }
+
     useEffect(() => {
         magic = new Magic(MAGIC_PUBLIC_KEY);
         checkUserLoggedIn().catch(err => {
@@ -50,7 +58,7 @@ export const AuthProvider = props => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{user, loginUser, logoutUser}}>
+        <AuthContext.Provider value={{user, loginUser, logoutUser, getToken}}>
             {props.children}
         </AuthContext.Provider>
     )

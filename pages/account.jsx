@@ -1,12 +1,44 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Helmet from 'react-helmet';
 import {Tab, TabList, TabPanel, Tabs} from 'react-tabs';
 
 import ALink from '~/components/features/custom-link';
 import AuthContext from "~/context/AuthContext";
+import {API_URL} from "~/utils/urls";
 
-function Account() {
-    const {user, logoutUser} = useContext(AuthContext);
+const useOrders = (user, getToken) => {
+    const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            if (user) {
+                try {
+                    setLoading(true);
+                    const token = await getToken();
+                    const order_res = await fetch(`${API_URL}/orders`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    const data = await order_res.json();
+                    setOrders(data);
+                } catch (e) {
+                    setOrders([]);
+                }
+                setLoading(false);
+            }
+        };
+
+        fetchOrders().catch(() => setOrders([]));
+    }, [user]);
+
+    return {orders, loading };
+}
+
+export default function Account() {
+    const {user, logoutUser, getToken} = useContext(AuthContext);
+    const {orders, loading } = useOrders(user, getToken);
 
     return (
         <main className="main account">
@@ -25,6 +57,7 @@ function Account() {
             </nav>
             <div className="page-content mt-4 mb-10 pb-6">
                 <div className="container">
+
                     {user ? (
                         <>
                             <h2 className="title title-center mb-10">My Account</h2>
@@ -78,72 +111,40 @@ function Account() {
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td className="order-number"><ALink href="#">#3596</ALink></td>
-                                                <td className="order-date">
-                                                    <time>February 24, 2021</time>
-                                                </td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$900.00 for 5 items</span></td>
-                                                <td className="order-action"><ALink href="#"
-                                                                                    className="btn btn-primary btn-link btn-underline">View</ALink>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-number"><ALink href="#">#3593</ALink></td>
-                                                <td className="order-date">
-                                                    <time>February 21, 2021</time>
-                                                </td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$290.00 for 2 items</span></td>
-                                                <td className="order-action"><ALink href="#"
-                                                                                    className="btn btn-primary btn-link btn-underline">View</ALink>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-number"><ALink href="#">#2547</ALink></td>
-                                                <td className="order-date">
-                                                    <time>January 4, 2021</time>
-                                                </td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$480.00 for 8 items</span></td>
-                                                <td className="order-action"><ALink href="#"
-                                                                                    className="btn btn-primary btn-link btn-underline">View</ALink>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-number"><ALink href="#">#2549</ALink></td>
-                                                <td className="order-date">
-                                                    <time>January 19, 2021</time>
-                                                </td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$680.00 for 5 items</span></td>
-                                                <td className="order-action"><ALink href="#"
-                                                                                    className="btn btn-primary btn-link btn-underline">View</ALink>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-number"><ALink href="#">#4523</ALink></td>
-                                                <td className="order-date">
-                                                    <time>Jun 6, 2021</time>
-                                                </td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$564.00 for 3 items</span></td>
-                                                <td className="order-action"><ALink href="#"
-                                                                                    className="btn btn-primary btn-link btn-underline">View</ALink>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="order-number"><ALink href="#">#4526</ALink></td>
-                                                <td className="order-date">
-                                                    <time>Jun 19, 2021</time>
-                                                </td>
-                                                <td className="order-status"><span>On hold</span></td>
-                                                <td className="order-total"><span>$123.00 for 8 items</span></td>
-                                                <td className="order-action"><ALink href="#"
-                                                                                    className="btn btn-primary btn-link btn-underline">View</ALink>
-                                                </td>
-                                            </tr>
+                                            {orders.map(order => (
+                                                <tr key={order.id}>
+                                                    <td className="order-number">
+                                                        <ALink href="#">
+                                                            {order.id}
+                                                        </ALink>
+                                                    </td>
+                                                    <td className="order-date">
+                                                        <time>
+                                                            {new Intl.DateTimeFormat("en-GB", {
+                                                                year: "numeric",
+                                                                month: "long",
+                                                                day: "2-digit"
+                                                            }).format(order.created_at)}
+                                                        </time>
+                                                    </td>
+                                                    <td className="order-status">
+                                                        {order.status === "paid" ? (
+                                                            <span
+                                                                style={{backgroundColor: "#4BB543"}}>{order.status}</span>
+                                                        ) : <span>{order.status}</span>
+                                                        }
+                                                    </td>
+                                                    <td className="order-total">
+                                                        <span>€{order.total}</span>
+                                                    </td>
+                                                    <td className="order-action">
+                                                        <ALink href="#"
+                                                               className="btn btn-primary btn-link btn-underline">
+                                                            View
+                                                        </ALink>
+                                                    </td>
+                                                </tr>
+                                            ))}
                                             </tbody>
                                         </table>
                                     </TabPanel>
@@ -242,5 +243,3 @@ function Account() {
     )
 
 }
-
-export default React.memo(Account);
