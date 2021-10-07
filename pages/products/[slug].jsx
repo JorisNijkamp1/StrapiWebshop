@@ -43,7 +43,7 @@ function ProductDefault({product}) {
 export async function getStaticProps({params: {slug}}) {
     const product_res = await fetch(`${API_URL}/products/?slug=${slug}`);
     const found = await product_res.json();
-
+    console.log(found);
     return {
         props: {
             product: found[0] // Response is an array.

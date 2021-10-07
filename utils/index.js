@@ -1,6 +1,6 @@
 /**
  * utils to parse options string to object
- * @param {string} options 
+ * @param {string} options
  * @return {object}
  */
 export const parseOptions = function ( options ) {
@@ -289,7 +289,10 @@ export const getTotalPrice = cartItems => {
     let total = 0;
     if ( cartItems ) {
         for ( let i = 0; i < cartItems.length; i++ ) {
-            total += cartItems[ i ].price * parseInt( cartItems[ i ].qty, 10 );
+
+            // TODO deze regel uncommente en werkend maken.
+            // total += cartItems[ i ].price * parseInt( cartItems[ i ].qty, 10 );
+            total += cartItems[ i ].price * parseInt( 1, 10 );
         }
     }
     return total;
@@ -302,7 +305,9 @@ export const getCartCount = cartItems => {
     let total = 0;
 
     for ( let i = 0; i < cartItems.length; i++ ) {
-        total += parseInt( cartItems[ i ].qty, 10 );
+        // TODO deze regel uncommente en werkend maken.
+        // total += parseInt( cartItems[ i ].qty, 10 );
+        total += parseInt( 1, 10 );
     }
 
     return total;

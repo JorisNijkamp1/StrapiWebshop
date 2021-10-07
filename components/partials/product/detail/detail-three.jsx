@@ -203,7 +203,7 @@ function DetailThree(props) {
                 <div className="product-form-group">
                     <Quantity max={10} product={product} onChangeQty={changeQty}/>
                     <button
-                        className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold ${cartActive ? '' : 'disabled'}`}
+                        className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold ${cartActive ? '' : ''}`}
                         onClick={() => console.log("ADDED TO CART")} onClick={() => console.log("ADDED TO CART")}><i
                         className='d-icon-bag'></i>Add to Cart
                     </button>
