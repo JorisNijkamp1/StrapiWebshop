@@ -14,6 +14,7 @@ const useOrders = (user, getToken) => {
             if (user) {
                 try {
                     const token = await getToken();
+                    console.log(token);
                     const order_res = await fetch(`${API_URL}/orders`, {
                         headers: {
                             'Authorization': `Bearer ${token}`

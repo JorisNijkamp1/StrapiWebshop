@@ -142,7 +142,7 @@ function Cart ( props ) {
             <div className="page-content pt-7 pb-10">
                 <div className="step-by pr-4 pl-4">
                     <h3 className="title title-simple title-step active"><ALink href="#">1. Shopping Cart</ALink></h3>
-                    <h3 className="title title-simple title-step"><ALink href="/pages/checkout">2. Checkout</ALink></h3>
+                    <h3 className="title title-simple title-step"><ALink href="/checkout">2. Checkout</ALink></h3>
                     <h3 className="title title-simple title-step"><ALink href="/pages/order">3. Order Complete</ALink></h3>
                 </div>
 
@@ -292,7 +292,7 @@ function Cart ( props ) {
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                <ALink href="/pages/checkout" className="btn btn-dark btn-rounded btn-checkout">Proceed to checkout</ALink>
+                                                <ALink href="/checkout" className="btn btn-dark btn-rounded btn-checkout">Proceed to checkout</ALink>
                                             </div>
                                         </div>
                                     </aside>

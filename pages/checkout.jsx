@@ -240,9 +240,9 @@ function Checkout(props) {
                 'Authorization': `Bearer ${token}`
             },
         });
-        console.log(res);
+
         const session = await res.json();
-        console.log("SESSION: ", session)
+
         const result = await stripe.redirectToCheckout({
             sessionId: session.id
         })

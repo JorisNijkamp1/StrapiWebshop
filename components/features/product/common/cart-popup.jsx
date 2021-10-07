@@ -34,7 +34,7 @@ export default function CartPopup ( props ) {
 
                 <div className="action-group d-flex">
                     <ALink href="/pages/cart" className="btn btn-sm btn-outline btn-primary btn-rounded">View Cart</ALink>
-                    <ALink href="/pages/checkout" className="btn btn-sm btn-primary btn-rounded">Check Out</ALink>
+                    <ALink href="/checkout" className="btn btn-sm btn-primary btn-rounded">Check Out</ALink>
                 </div>
             </div>
         </div>
